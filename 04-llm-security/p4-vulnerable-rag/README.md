@@ -5,7 +5,7 @@ the **target range** that the rest of track 04 attacks and defends:
 **p5** (prompt injection), **p6** (data exfiltration) and **p7** (defenses) all
 import `VulnerableRAG` and hit the weaknesses planted here.
 
-> ⚠️ **Deliberately-vulnerable LAB target. Authorized use only.** Every "secret",
+> **Deliberately-vulnerable LAB target. Authorized use only.** Every "secret",
 > PII record, and API key in the corpus is **synthetic and fake**, planted on
 > purpose. The target is a self-trained / mock model over made-up data on your own
 > machine — never a real system. See [../../ETHICS.md](../../ETHICS.md).

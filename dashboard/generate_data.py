@@ -74,7 +74,7 @@ def read_blurb(proj_dir: Path) -> str:
             continue
         if not seen_title or not s:
             continue
-        if s.startswith(("![", "|", "```")) or s.startswith("⚠"):
+        if s.startswith(("![", "|", "```", "Authorized", "Note:")):
             continue
         s = s.lstrip("> ").strip()
         if s:

@@ -1,54 +1,72 @@
 {
   "project": "p5-market-manipulation",
-  "summary": "IsolationForest on 1500 synthetic OHLCV bars (60 manipulated, prevalence 4.0%): bar PR-AUC=0.862, ROC-AUC=0.993; at a 5% alert budget it catches 11/14 injected events (event recall 79%) with median lead-time +4 bars before the worst bar.",
-  "source": "synthetic",
+  "summary": "IsolationForest on REAL AAPL daily OHLCV (506 bars, 2015-02-17\u20132017-02-16): flags the 26 most anomalous bars at a 5% budget. Unlabeled \u2014 real markets have no manipulation ground truth \u2014 so detections are surfaced, not scored; top flags land on real turbulence (gaps / volume spikes).",
+  "source": "real: AAPL daily OHLCV (GitHub-raw mirror)",
+  "source_url": "https://raw.githubusercontent.com/plotly/datasets/master/finance-charts-apple.csv",
   "detector": "isolation_forest",
-  "baseline_detector": "rolling_zscore",
   "seed": 42,
-  "n_bars": 1500,
+  "ticker": "AAPL",
+  "n_bars": 506,
   "window": 20,
   "alert_budget": 0.05,
-  "n_manipulated_bars": 60,
-  "prevalence": 0.04,
-  "pr_auc": 0.8618166106410718,
-  "roc_auc": 0.9929050925925926,
-  "precision_at_k": {
-    "p@25": 0.88,
-    "p@50": 0.86,
-    "p@100": 0.56
-  },
-  "baseline_pr_auc": 0.8870692999648302,
-  "baseline_roc_auc": 0.9903125,
-  "operating_threshold": 0.5418708417070298,
-  "bar_recall": 0.8666666666666667,
-  "bar_precision": 0.6933333333333334,
-  "false_positive_rate": 0.01597222222222222,
-  "confusion": {
-    "tp": 52,
-    "fp": 23,
-    "fn": 8,
-    "tn": 1417
-  },
-  "event_recall": 0.7857142857142857,
-  "n_events": 14,
-  "n_detected": 11,
-  "median_lead_time_bars": 4.0,
-  "mean_lead_time_bars": 2.6363636363636362,
-  "event_recall_by_kind": {
-    "pump_dump": {
-      "detected": 6,
-      "total": 6,
-      "recall": 1.0
+  "n_flagged": 26,
+  "operating_threshold": 0.5556183909763225,
+  "top_flagged_bars": [
+    {
+      "date": "2017-02-01",
+      "close": 128.75,
+      "score": 0.7306
     },
-    "spoof": {
-      "detected": 5,
-      "total": 8,
-      "recall": 0.625
+    {
+      "date": "2016-04-27",
+      "close": 97.82,
+      "score": 0.7279
+    },
+    {
+      "date": "2016-07-27",
+      "close": 102.95,
+      "score": 0.7157
+    },
+    {
+      "date": "2015-08-21",
+      "close": 105.76,
+      "score": 0.7069
+    },
+    {
+      "date": "2015-08-24",
+      "close": 103.12,
+      "score": 0.691
+    },
+    {
+      "date": "2016-01-27",
+      "close": 93.42,
+      "score": 0.685
+    },
+    {
+      "date": "2015-08-26",
+      "close": 109.69,
+      "score": 0.6568
+    },
+    {
+      "date": "2016-09-14",
+      "close": 111.77,
+      "score": 0.6523
+    },
+    {
+      "date": "2015-08-11",
+      "close": 113.49,
+      "score": 0.635
+    },
+    {
+      "date": "2015-09-01",
+      "close": 107.72,
+      "score": 0.6305
     }
-  },
+  ],
+  "labeled": false,
+  "note": "Unsupervised on real data; no ground-truth manipulation labels. See the synthetic path (make run) for labeled PR/recall metrics.",
   "figures": [
     "results/figures/price_volume_flagged.png",
-    "results/figures/anomaly_score_timeline.png",
-    "results/figures/pr_curve.png"
+    "results/figures/anomaly_score_timeline.png"
   ]
 }

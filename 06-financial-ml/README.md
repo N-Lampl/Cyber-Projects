@@ -5,19 +5,21 @@ risk. It's the same "ML for security" mindset as the detection track, applied to
 imbalance, anomaly detection, adversaries who adapt, and metrics that actually matter to a risk team
 (PR-AUC, precision@k, calibration) rather than raw accuracy.
 
-⚠️ Authorized use only — see [../ETHICS.md](../ETHICS.md). All data is **synthetic** by default
-(generated in-repo); real public datasets are documented per project and never committed.
+Authorized use only — see [../ETHICS.md](../ETHICS.md). Datasets are NOT committed; they're
+downloaded by code. Each project also ships an offline synthetic generator as a fallback.
 
-## Projects
+## Projects — and what each runs on
 
-| Project | Build | Status |
+Four of six run on **real public data**; the two that don't have an honest reason (below).
+
+| Project | Real result | Data |
 |---|---|---|
-| `p1-fraud-detection/` | Supervised credit-card fraud on imbalanced data; PR-AUC, precision@k, threshold tuning | ✅ |
-| `p2-transaction-anomaly/` | Unsupervised anomaly detection (IsolationForest + autoencoder) on a transaction stream | ✅ |
-| `p3-aml-typologies/` | Money-laundering detection on a transaction **graph**: structuring/smurfing + layering | ✅ |
-| `p4-credit-risk-scoring/` | Default prediction with **calibration** (reliability, Brier) + a fairness gap check | ✅ |
-| `p5-market-manipulation/` | Time-series anomaly detection: pump-and-dump / spoofing on synthetic OHLCV | ✅ |
-| ★ `CAPSTONE-adversarial-fraud/` | Evade your **own** fraud model under feature-mutability constraints → harden → re-measure | ✅ |
+| `p1-fraud-detection/` | Supervised fraud — **PR-AUC 0.84, ROC-AUC 0.98**, 88% caught @1% FPR | **REAL** ULB credit-card fraud (284,807 txns) |
+| `p2-transaction-anomaly/` | Unsupervised IsolationForest — **PR-AUC 0.13**, ROC-AUC 0.94 (the cost of no labels) | **REAL** ULB credit-card fraud |
+| `p4-credit-risk-scoring/` | Calibrated GBM — **ROC-AUC 0.80**, Brier 0.16, +4.6% approval gap for under-25s | **REAL** UCI German Credit (1,000 borrowers) |
+| `p5-market-manipulation/` | Flags the Aug-2015 crash + earnings gaps on real prices | **REAL** AAPL daily OHLCV 2015–2017 |
+| `p3-aml-typologies/` | Structuring + layering detection on a transaction graph | Synthetic — *no real public labeled AML data exists; even industry uses sims (AMLSim/PaySim)* |
+| `CAPSTONE-adversarial-fraud/` | Evasion ASR **100% → 0%** after adversarial training | Synthetic — *the feature-mutability attack needs interpretable features; ULB's PCA features can't express "a fraudster changes the amount." Real fraud numbers live in p1/p2* |
 
 ## Notes
 
@@ -28,8 +30,23 @@ imbalance, anomaly detection, adversaries who adapt, and metrics that actually m
 - **CPU-friendly.** Classical ML (sklearn) by default; xgboost / a small torch autoencoder / networkx
   are optional enhancements imported lazily.
 
-## Real datasets (documented per project; optional)
+## Reproduce the real-data runs
 
-Credit-card fraud (ULB, Kaggle) · Give Me Some Credit / German Credit (credit risk) · IBM AML synthetic
-transactions · LOBSTER / public tick data (market microstructure). Each project ships a synthetic
-generator so it runs offline; swap in the real dataset to make the numbers benchmark-grade.
+```bash
+# p1 + p2 — ULB credit-card fraud (no Kaggle account needed; HuggingFace mirror)
+curl -L -o p1-fraud-detection/data/creditcard.csv \
+  https://huggingface.co/datasets/David-Egea/Creditcard-fraud-detection/resolve/main/creditcard.csv
+python3 p1-fraud-detection/scripts/run_detection.py --real p1-fraud-detection/data/creditcard.csv
+python3 p2-transaction-anomaly/scripts/run_detect.py --real p1-fraud-detection/data/creditcard.csv
+
+# p4 — UCI German Credit
+curl -o p4-credit-risk-scoring/data/german.data \
+  https://archive.ics.uci.edu/ml/machine-learning-databases/statlog/german/german.data
+python3 p4-credit-risk-scoring/scripts/run_scoring.py --real-csv p4-credit-risk-scoring/data/german.data
+
+# p5 — real AAPL OHLCV (GitHub-raw mirror; Yahoo/stooq are anti-bot in many envs)
+python3 p5-market-manipulation/scripts/run_detect.py --ticker AAPL
+```
+
+Each project still falls back to its offline synthetic generator (`make run` / no flag) so tests and CI
+need no network. Datasets are git-ignored, never committed.

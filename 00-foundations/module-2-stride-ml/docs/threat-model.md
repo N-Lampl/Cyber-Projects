@@ -21,15 +21,15 @@ flowchart LR
     N4[("Feature Store")]
     N5[("Prediction Log")]
   end
-  N0 -->|prediction request + auth token 🔒| N1
-  N1 -->|validated request 🔒| N2
-  N2 -->|feature lookup keys 🔒| N4
-  N4 -->|online feature vector 🔒| N2
-  N3 -->|signed model artifact 🔒| N2
-  N2 -->|prediction + confidence 🔒| N1
-  N1 -->|prediction response 🔒| N0
-  N2 -->|inputs + outputs + request id 🔒| N5
-  N6 -->|new model version (deploy) 🔒| N3
+  N0 -->|prediction request + auth token | N1
+  N1 -->|validated request | N2
+  N2 -->|feature lookup keys | N4
+  N4 -->|online feature vector | N2
+  N3 -->|signed model artifact | N2
+  N2 -->|prediction + confidence | N1
+  N1 -->|prediction response | N0
+  N2 -->|inputs + outputs + request id | N5
+  N6 -->|new model version (deploy) | N3
 ```
 
 ## Trust boundaries

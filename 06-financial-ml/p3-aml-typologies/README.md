@@ -7,7 +7,7 @@ per account, and detects the suspicious accounts with both an unsupervised basel
 and a rules + RandomForest hybrid — scored with the metrics an AML team actually uses
 (PR-AUC, precision@k, recall at a fixed false-positive budget), not accuracy.
 
-⚠️ **Authorized use only.** All data is synthetic and the models are my own. See
+**Authorized use only.** All data is synthetic and the models are my own. See
 [../../ETHICS.md](../../ETHICS.md).
 
 ## The idea

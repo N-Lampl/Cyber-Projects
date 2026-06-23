@@ -7,7 +7,7 @@ re-run the p5-style prompt-injection / exfiltration attacks to measure the
 **from-scratch classical-ML detector** (TF-IDF → `sklearn` LogisticRegression)
 trained on a **synthetic injection dataset generated offline**.
 
-⚠️ **Authorized use only.** The target is a lab app I built myself (p4) on
+**Authorized use only.** The target is a lab app I built myself (p4) on
 synthetic data with a deterministic mock LLM. No real systems, no real data, no
 network calls. See [../../ETHICS.md](../../ETHICS.md).
 

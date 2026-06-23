@@ -6,7 +6,7 @@ a tiny char-level LM on it, and then **measures the leak** with the *Secret Shar
 **exposure** metric — a perplexity-based membership test. No training data is needed beyond a
 synthetic corpus we generate ourselves, so the whole thing runs offline on CPU in ~70s.
 
-⚠️ **Authorized use only.** The target is a model I train myself on synthetic data; the
+**Authorized use only.** The target is a model I train myself on synthetic data; the
 optional GPT-2 path uses public weights / your own fine-tune. See [../../ETHICS.md](../../ETHICS.md).
 
 ## The idea

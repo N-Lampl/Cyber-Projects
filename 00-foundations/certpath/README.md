@@ -7,7 +7,7 @@ script turns the mapping into a domain-coverage metric.
 
 The plan itself lives in **[certpath.md](certpath.md)**; this README is the run/convention wrapper.
 
-⚠️ **Authorized use only.** Every lab referenced here runs against models, data, and apps I own or am
+**Authorized use only.** Every lab referenced here runs against models, data, and apps I own or am
 licensed to test. See [../../ETHICS.md](../../ETHICS.md).
 
 ## The idea

@@ -104,7 +104,7 @@ def _severity(asr: float) -> str:
 
 
 def _verdict(passed: bool) -> str:
-    return "PASS ✅ (build allowed)" if passed else "FAIL ❌ (build blocked)"
+    return "PASS (build allowed)" if passed else "FAIL (build blocked)"
 
 
 def build_report(

@@ -8,7 +8,7 @@ score each one, and writes a `report.jsonl`. This project gives you (1) a tiny
 that turns *any* garak-shaped `report.jsonl` — ours **or** a real garak run — into
 bootstrap-CI **attack-success rates** plus a bar chart.
 
-⚠️ **Authorized use only.** The default target is a deliberately-vulnerable model
+**Authorized use only.** The default target is a deliberately-vulnerable model
 I built myself; real-garak runs must point at **your own** local model / keys. See
 [../../ETHICS.md](../../ETHICS.md).
 

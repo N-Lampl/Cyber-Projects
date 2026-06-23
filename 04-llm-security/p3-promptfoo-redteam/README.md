@@ -7,7 +7,7 @@ industry eval-as-code tool) and a **pure-python offline harness** that runs the
 same OWASP-LLM probe library against the local vulnerable RAG with zero Node,
 zero network, zero API keys.
 
-⚠️ **Authorized use only.** Every probe targets a RAG app I built myself
+**Authorized use only.** Every probe targets a RAG app I built myself
 (`../p4-vulnerable-rag`) running a deterministic offline mock LLM over fully
 synthetic, planted data. See [../../ETHICS.md](../../ETHICS.md).
 

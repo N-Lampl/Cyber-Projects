@@ -5,7 +5,7 @@ with small dependency-free Python scripts across five OWASP Top 10 (2021) catego
 the **fix** for each. Every exploit also runs **offline** against a deterministic mock, so the
 logic is provable in CI with no docker.
 
-⚠️ **Authorized use only.** The target is a deliberately-vulnerable app **you run yourself** on
+**Authorized use only.** The target is a deliberately-vulnerable app **you run yourself** on
 `127.0.0.1`. The scripts refuse non-local hosts unless you explicitly opt in. Never test a system
 you do not own. See [../../ETHICS.md](../../ETHICS.md).
 

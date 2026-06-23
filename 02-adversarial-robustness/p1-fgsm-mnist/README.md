@@ -3,7 +3,7 @@
 The first project and the quick win: implement the **Fast Gradient Sign Method** by hand against a
 99%-accurate MNIST classifier and watch it fall apart. ~10 lines of attack code, no attack library.
 
-⚠️ **Authorized use only.** The target is a model I trained myself on a public dataset. See
+**Authorized use only.** The target is a model I trained myself on a public dataset. See
 [../../ETHICS.md](../../ETHICS.md).
 
 ## The idea

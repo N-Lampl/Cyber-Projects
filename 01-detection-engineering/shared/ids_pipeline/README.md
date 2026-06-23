@@ -5,7 +5,7 @@ A small, **reusable** intrusion-detection library that both `p1-nids-baseline` a
 network-flow rows to SOC-grade metrics -- so the capstone can focus on attacking/defending a
 detector instead of re-plumbing data prep.
 
-⚠️ **Authorized use only.** Targets are a model I train myself on synthetic data (or the
+**Authorized use only.** Targets are a model I train myself on synthetic data (or the
 public NSL-KDD research dataset). No live traffic, no third-party systems. See
 [../../ETHICS.md](../../ETHICS.md).
 

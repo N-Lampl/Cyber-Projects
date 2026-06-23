@@ -8,7 +8,7 @@ number. The model + preprocessing live in the reusable
 which this project shares with the adversarial-IDS capstone; here we add the SOC
 reporting layer and the figures.
 
-⚠️ **Authorized use only.** The target is a model I trained myself on synthetic
+**Authorized use only.** The target is a model I trained myself on synthetic
 flows (or the public NSL-KDD research dataset). See [../../ETHICS.md](../../ETHICS.md).
 
 ## The problem

@@ -7,7 +7,7 @@ the **online, warm-started-shadows** flavour, against a model I trained myself, 
 reports the metrics that actually matter for privacy: **TPR @ 1% FPR**, **AUC**, and
 a log-log **ROC**.
 
-⚠️ **Authorized use only.** The target is a model I train myself on synthetic
+**Authorized use only.** The target is a model I train myself on synthetic
 (or, optionally, public Fashion-MNIST) data. No real user data is involved. See
 [../../ETHICS.md](../../ETHICS.md).
 
@@ -75,7 +75,7 @@ On the default synthetic run (3000-example pool, a deliberately over-fit MLP tar
 The target hits **train acc 1.00 / test acc 0.60** — a 0.40 generalisation gap, i.e.
 heavy memorisation. LiRA flags **~11% of true members at a 1% false-positive rate, 4×
 the naive baseline**: per-example calibration is exactly what buys you the low-FPR
-regime that the global threshold can't reach (see the log-log ROC). 
+regime that the global threshold can't reach (see the log-log ROC).
 
 **Honest about scale:** this is a *small* LiRA — 16 shadows, a tiny MLP, a single
 target — meant to be correct, readable and CPU-runnable, not to reproduce the paper's

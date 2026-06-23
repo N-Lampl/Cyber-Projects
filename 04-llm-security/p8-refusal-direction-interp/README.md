@@ -5,7 +5,7 @@ stream (Arditi et al., 2024). This project reproduces the *methodology* — extr
 ablate it at inference time, and measure what happens to refusals vs capability — as **safety /
 interpretability research**, entirely on CPU, with **no model weights downloaded** by default.
 
-> ⚠️ **Authorized use only — analysis, not a jailbreak release.** The committed artifact is an
+> **Authorized use only — analysis, not a jailbreak release.** The committed artifact is an
 > *analysis* (a direction vector, metrics, figures). This project **never** writes out or
 > redistributes a modified ("abliterated") model. The default path runs against a **synthetic**
 > self-built model; the optional real-model path runs only against an open-weight model **you** load

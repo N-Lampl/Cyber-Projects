@@ -6,7 +6,7 @@ injected into a handful of accounts; an unsupervised **IsolationForest** over pe
 behavioural features ranks the events, and we score it the way a SOC actually cares:
 **precision@k** and **time-to-detect** — not just ROC-AUC.
 
-⚠️ **Authorized use only.** Targets are a self-generated synthetic log and self-trained
+**Authorized use only.** Targets are a self-generated synthetic log and self-trained
 models — no real systems, no real users. See [../../ETHICS.md](../../ETHICS.md).
 
 ## The problem

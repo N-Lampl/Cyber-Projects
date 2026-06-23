@@ -5,7 +5,7 @@ data-flow model, then walk it with a deterministic STRIDE rule engine to enumera
 threats, score them, and emit an auditable report + per-category metrics. Pure stdlib
 by default; [`pytm`](https://github.com/izar/pytm) is an optional enhanced path.
 
-⚠️ **Authorized use only.** The "target" is a self-authored architecture model with
+**Authorized use only.** The "target" is a self-authored architecture model with
 synthetic data — no real system is probed. See [../../ETHICS.md](../../ETHICS.md).
 
 ## The idea
@@ -63,7 +63,7 @@ flowchart LR
 
 `([rounded])` = external actor · `((round))` = process · `[(cylinder)]` = datastore.
 The generated [docs/threat-model.md](docs/threat-model.md) re-emits this diagram with
-🔒 markers on encrypted flows.
+ markers on encrypted flows.
 
 ## Run it
 

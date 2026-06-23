@@ -6,7 +6,7 @@ realistic feature-mutability constraints**, measure how often the attack
 succeeds, then **harden** the model and re-measure — producing an **IDS
 Robustness Report Card** (markdown + figure + `metrics.json`).
 
-⚠️ **Authorized use only.** The target is an IDS I trained myself on synthetic /
+**Authorized use only.** The target is an IDS I trained myself on synthetic /
 self-downloaded data. The attack only crafts inputs against my own model in this
 repo. See [../../ETHICS.md](../../ETHICS.md).
 

@@ -4,18 +4,18 @@ Stealing models and recovering training data — and defending with differential
 signal for AI-security / trust-&-safety roles. **CPU-heaviest track → sequenced last; run heavy bits as
 overnight batch.**
 
-⚠️ Authorized use only — see [../ETHICS.md](../ETHICS.md). Attacks target models you trained.
+Authorized use only — see [../ETHICS.md](../ETHICS.md). Attacks target models you trained.
 
 ## Projects
 
 | Project | Build | Status |
 |---|---|---|
-| `p1-api-threat-model/` | FastAPI model service with **real** authN/Z + rate-limit + audit-log; links 00-foundations | ⬜ |
-| `p2-model-extraction/` | Steal a model via queries (ART CopycatCNN/KnockoffNets); fidelity-vs-query curve; rate-limit defense | ⬜ |
-| `p3-membership-inference/` | Shokri + **LiRA** (online, warm-started shadows); report **TPR@1%FPR + AUC** | ⬜ |
-| `p4-inversion-attribute/` | Model inversion (ART MIFace) + attribute inference on UCI Adult | ⬜ |
-| `p5-llm-privacy/` | Canary insertion + perplexity MIA; API-first, tiny-GPT2/Ollama fallback | ⬜ |
-| ★ `CAPSTONE-dp-defenses/` | Opacus **DP-SGD** at ε ∈ {∞, 3, 1}; shared shadow set; overnight batch script | ⬜ |
+| `p1-api-threat-model/` | FastAPI model service with **real** authN/Z + rate-limit + audit-log; links 00-foundations | |
+| `p2-model-extraction/` | Steal a model via queries (ART CopycatCNN/KnockoffNets); fidelity-vs-query curve; rate-limit defense | |
+| `p3-membership-inference/` | Shokri + **LiRA** (online, warm-started shadows); report **TPR@1%FPR + AUC** | |
+| `p4-inversion-attribute/` | Model inversion (ART MIFace) + attribute inference on UCI Adult | |
+| `p5-llm-privacy/` | Canary insertion + perplexity MIA; API-first, tiny-GPT2/Ollama fallback | |
+| `CAPSTONE-dp-defenses/` | Opacus **DP-SGD** at ε ∈ {∞, 3, 1}; shared shadow set; overnight batch script | |
 
 ## Notes
 

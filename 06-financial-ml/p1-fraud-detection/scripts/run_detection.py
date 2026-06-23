@@ -18,6 +18,7 @@ import matplotlib.pyplot as plt  # noqa: E402
 import numpy as np  # noqa: E402
 from sklearn.metrics import precision_recall_curve  # noqa: E402
 from sklearn.model_selection import train_test_split  # noqa: E402
+from sklearn.preprocessing import StandardScaler  # noqa: E402
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
@@ -48,7 +49,7 @@ def _plot_pr_curve(y, scores, ap: float, model_name: str) -> Path:
     ax.axhline(base_rate, color="#c0392b", ls="--", lw=1, label=f"chance (base rate={base_rate:.3f})")
     ax.set_xlabel("recall (fraud caught)")
     ax.set_ylabel("precision (alerts that are real fraud)")
-    ax.set_title("Precision-Recall: fraud detection on a 1% base rate", pad=12)
+    ax.set_title(f"Precision-Recall: fraud detection (base rate {base_rate * 100:.2f}%)", pad=12)
     ax.set_xlim(0, 1)
     ax.set_ylim(0, 1.02)
     ax.grid(True, alpha=0.3)
@@ -110,6 +111,7 @@ def _plot_precision_at_k(y, scores, ks: list[int]) -> tuple[Path, dict[str, floa
 
 def main() -> None:
     ap = argparse.ArgumentParser()
+    ap.add_argument("--real", type=str, default=None, help="path to real ULB creditcard.csv (V1..V28, Amount, Class)")
     ap.add_argument("--n", type=int, default=30_000, help="number of synthetic transactions")
     ap.add_argument("--fraud-rate", type=float, default=0.01, help="target fraud base rate")
     ap.add_argument("--target-fpr", type=float, default=0.01, help="false-positive budget for recall")
@@ -120,16 +122,28 @@ def main() -> None:
     set_seed(args.seed)
     FIG_DIR.mkdir(parents=True, exist_ok=True)
 
-    df = make_transactions(n=args.n, fraud_rate=args.fraud_rate, seed=args.seed)
-    x, y = split_xy(df)
+    if args.real:
+        from fraud_detection.data import load_creditcard_csv
+
+        df = load_creditcard_csv(args.real)
+        y = df["is_fraud"].astype(int)
+        feat = [c for c in df.columns if c not in ("is_fraud", "Class")]
+        x = df[feat].astype(float)
+        source = f"ULB creditcard.csv (real, {len(df):,} txns)"
+    else:
+        df = make_transactions(n=args.n, fraud_rate=args.fraud_rate, seed=args.seed)
+        x, y = split_xy(df)
+        source = "synthetic"
+
     x_tr, x_te, y_tr, y_te = train_test_split(
         x, y, test_size=0.3, stratify=y, random_state=args.seed
     )
-    n_fraud_tr = int(y_tr.sum())
-    n_fraud_te = int(y_te.sum())
+    if args.real:  # standardize anonymized PCA features + Amount/Time (fit on TRAIN only)
+        scaler = StandardScaler().fit(x_tr)
+        x_tr, x_te = scaler.transform(x_tr), scaler.transform(x_te)
     print(
-        f"synthetic: {len(df):,} txns, realized fraud rate "
-        f"{y.mean() * 100:.2f}% | train fraud={n_fraud_tr}, test fraud={n_fraud_te}"
+        f"{source}: {len(df):,} txns, fraud rate {y.mean() * 100:.3f}% | "
+        f"train fraud={int(y_tr.sum())}, test fraud={int(y_te.sum())}"
     )
 
     # --- train every available model, rank by PR-AUC -------------------------
@@ -157,8 +171,8 @@ def main() -> None:
     pak_fig, pak = _plot_precision_at_k(y_te, best_scores, args.ks)
 
     summary = (
-        f"{best_name} on synthetic credit-card fraud (realized rate "
-        f"{y.mean() * 100:.2f}%): PR-AUC={results[best_name]['pr_auc']:.3f}, "
+        f"{best_name} on {source} (fraud rate "
+        f"{y.mean() * 100:.3f}%): PR-AUC={results[best_name]['pr_auc']:.3f}, "
         f"ROC-AUC={results[best_name]['roc_auc']:.3f}; at a {args.target_fpr * 100:.0f}% "
         f"false-positive budget it catches {recall * 100:.0f}% of fraud at "
         f"{precision * 100:.0f}% alert precision; p@100={pak.get('p@100', float('nan')):.2f}."
@@ -167,7 +181,7 @@ def main() -> None:
     metrics = {
         "project": "p1-fraud-detection",
         "summary": summary,
-        "source": "synthetic",
+        "source": source,
         "best_model": best_name,
         "seed": args.seed,
         "n_transactions": int(len(df)),

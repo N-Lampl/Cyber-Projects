@@ -110,13 +110,136 @@ def _plot_pr(scores_if, scores_z, labels, path: Path) -> None:
     plt.close(fig)
 
 
+def _plot_real(df, scores, flagged, thr, ticker, path_price, path_score) -> None:
+    dates = df["date"]
+    fidx = np.where(flagged)[0]
+    fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(10, 6), sharex=True,
+                                   gridspec_kw={"height_ratios": [2, 1]})
+    ax1.plot(dates, df["close"], color="#1f77b4", lw=0.9, label="close")
+    ax1.scatter(dates.iloc[fidx], df["close"].iloc[fidx], s=16, color="#d62728",
+                zorder=3, label=f"flagged ({len(fidx)})")
+    ax1.set_ylabel("close ($)")
+    ax1.set_title(f"REAL {ticker}: IsolationForest flags the most anomalous bars (red)")
+    ax1.legend(loc="upper left", fontsize=8)
+    ax2.bar(dates, df["volume"], color="#7f7f7f", width=1.0)
+    ax2.scatter(dates.iloc[fidx], df["volume"].iloc[fidx], s=14, color="#d62728", zorder=3)
+    ax2.set_ylabel("volume")
+    ax2.xaxis.set_major_locator(mdates.AutoDateLocator())
+    fig.autofmt_xdate()
+    fig.tight_layout()
+    fig.savefig(path_price, dpi=120)
+    plt.close(fig)
+
+    fig, ax = plt.subplots(figsize=(10, 3.6))
+    ax.plot(dates, scores, color="#2ca02c", lw=0.8, label="IsolationForest score")
+    ax.axhline(thr, ls="--", color="black", lw=1, label="operating threshold")
+    ax.set_ylabel("anomaly score")
+    ax.set_title(f"REAL {ticker}: anomaly-score timeline")
+    ax.legend(loc="upper left", fontsize=8)
+    fig.autofmt_xdate()
+    fig.tight_layout()
+    fig.savefig(path_score, dpi=120)
+    plt.close(fig)
+
+
+def run_real(args) -> None:
+    """Run the detector on REAL market OHLCV pulled via yfinance.
+
+    Real markets have NO manipulation ground truth, so there are no PR/recall
+    numbers here -- we surface the bars the unsupervised detector finds most
+    anomalous (which tend to be real crashes / squeezes / volume spikes).
+    """
+    import pandas as pd
+
+    set_seed(args.seed)
+    FIG_DIR.mkdir(parents=True, exist_ok=True)
+    for old in FIG_DIR.glob("*.png"):  # clear stale synthetic figures
+        old.unlink()
+
+    # Live finance APIs (Yahoo/stooq) are often blocked/anti-bot; we pull a real
+    # daily-OHLCV CSV from a stable GitHub-raw mirror instead. Columns may be
+    # prefixed (e.g. "AAPL.Close"), so we match by suffix.
+    raw = pd.read_csv(args.csv_url)
+
+    def _col(suffix: str) -> str:
+        m = [c for c in raw.columns if c.lower().endswith(suffix)]
+        if not m:
+            raise SystemExit(f"no '{suffix}' column in {args.csv_url}")
+        return m[0]
+
+    date_col = next((c for c in raw.columns if c.lower() in ("date", "datetime")), raw.columns[0])
+    df = pd.DataFrame({
+        "date": pd.to_datetime(raw[date_col]),
+        "high": raw[_col("high")].astype(float).to_numpy(),
+        "low": raw[_col("low")].astype(float).to_numpy(),
+        "close": raw[_col("close")].astype(float).to_numpy(),
+        "volume": raw[_col("volume")].astype(float).to_numpy(),
+    }).sort_values("date").reset_index(drop=True)
+
+    feats = build_features(df, window=args.window)
+    scores = isolation_forest_score(feats, seed=args.seed)
+    thr = threshold_at_budget(scores, args.budget)
+    flagged = scores >= thr
+    order = np.argsort(-scores)[:10]
+    top = [{"date": str(df["date"].iloc[i].date()),
+            "close": round(float(df["close"].iloc[i]), 2),
+            "score": round(float(scores[i]), 4)} for i in order]
+
+    _plot_real(df, scores, flagged, thr, args.ticker,
+               FIG_DIR / "price_volume_flagged.png",
+               FIG_DIR / "anomaly_score_timeline.png")
+
+    summary = (
+        f"IsolationForest on REAL {args.ticker} daily OHLCV ({len(df):,} bars, "
+        f"{df['date'].min().date()}–{df['date'].max().date()}): flags the "
+        f"{int(flagged.sum())} most anomalous bars at a {args.budget:.0%} budget. "
+        f"Unlabeled — real markets have no manipulation ground truth — so detections are "
+        f"surfaced, not scored; top flags land on real turbulence (gaps / volume spikes)."
+    )
+    metrics = {
+        "project": "p5-market-manipulation",
+        "summary": summary,
+        "source": f"real: {args.ticker} daily OHLCV (GitHub-raw mirror)",
+        "source_url": args.csv_url,
+        "detector": "isolation_forest",
+        "seed": args.seed,
+        "ticker": args.ticker,
+        "n_bars": int(len(df)),
+        "window": int(args.window),
+        "alert_budget": args.budget,
+        "n_flagged": int(flagged.sum()),
+        "operating_threshold": float(thr),
+        "top_flagged_bars": top,
+        "labeled": False,
+        "note": "Unsupervised on real data; no ground-truth manipulation labels. "
+                "See the synthetic path (make run) for labeled PR/recall metrics.",
+        "figures": [
+            "results/figures/price_volume_flagged.png",
+            "results/figures/anomaly_score_timeline.png",
+        ],
+    }
+    (ROOT / "results" / "metrics.json").write_text(json.dumps(metrics, indent=2) + "\n")
+    print(summary)
+    print("top flagged bars:")
+    for t in top:
+        print(f"  {t['date']}  close={t['close']}  score={t['score']}")
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--seed", type=int, default=42)
     ap.add_argument("--n", type=int, default=1500, help="number of bars")
     ap.add_argument("--window", type=int, default=20, help="rolling feature window")
     ap.add_argument("--budget", type=float, default=0.05, help="per-bar alert budget")
+    ap.add_argument("--ticker", type=str, default=None, help="run on real OHLCV (label, e.g. AAPL)")
+    ap.add_argument("--csv-url", type=str,
+                    default="https://raw.githubusercontent.com/plotly/datasets/master/finance-charts-apple.csv",
+                    help="URL of a real daily-OHLCV CSV (default: real AAPL 2015-2017)")
     args = ap.parse_args()
+
+    if args.ticker:
+        run_real(args)
+        return
 
     set_seed(args.seed)
     FIG_DIR.mkdir(parents=True, exist_ok=True)

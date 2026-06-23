@@ -1,7 +1,7 @@
 # IDS Robustness Report Card
 
-**Target:** shared `ids_pipeline` RandomForest on synthetic flows  
-**Attack:** constrained FGSM (mutable-feature evasion, epsilon=2.0, steps=10)  
+**Target:** shared `ids_pipeline` RandomForest on synthetic flows
+**Attack:** constrained FGSM (mutable-feature evasion, epsilon=2.0, steps=10)
 **Defense:** adversarial training (constrained-FGSM augmentation)
 
 ## Overall grade: **A**

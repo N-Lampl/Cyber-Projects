@@ -5,7 +5,7 @@ cheap, explainable *lexical* features feed a scikit-learn classifier that scores
 speed. Runs fully offline on a deterministic synthetic corpus; an optional real-data path
 (PhiUSIIL) and an optional char-CNN are one flag away.
 
-⚠️ **Authorized use only.** Targets are a self-trained model on synthetic / public-research data.
+**Authorized use only.** Targets are a self-trained model on synthetic / public-research data.
 This is a *defensive* detector — do not use it to probe systems you don't own. See
 [../../ETHICS.md](../../ETHICS.md).
 

@@ -9,7 +9,7 @@ tool access to do the attacker's bidding. We measure the
 **unsafe-tool-invocation rate** before and after dropping in a least-privilege
 **tool-call guardrail**.
 
-⚠️ **Authorized use only.** Every "tool" is an in-memory mock; there is no real
+**Authorized use only.** Every "tool" is an in-memory mock; there is no real
 filesystem, email, database, or network. The default agent brain is a
 deterministic mock — no external API is called. See [../../ETHICS.md](../../ETHICS.md).
 

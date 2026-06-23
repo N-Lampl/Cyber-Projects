@@ -5,7 +5,7 @@ After [FGSM](../p1-fgsm-mnist) (one gradient step), this project implements the 
 head on a small CNN: success rate, perturbation size (L2 / L∞) and runtime. The point is to make the
 *trade-offs* concrete: cheap-but-blunt vs slow-but-minimal.
 
-⚠️ **Authorized use only.** The target is a model I trained myself on synthetic (or public) data.
+**Authorized use only.** The target is a model I trained myself on synthetic (or public) data.
 See [../../ETHICS.md](../../ETHICS.md).
 
 ## The attacks

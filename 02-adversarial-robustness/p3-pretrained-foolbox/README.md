@@ -5,7 +5,7 @@ predictions with an L∞ perturbation too small to change what the picture *mean
 the target, no attack library required — just the model's own input gradients (FGSM and its iterative
 cousin PGD). foolbox v3 is wired in as an **optional** cross-check.
 
-⚠️ **Authorized use only.** Targets are a model I trained myself on synthetic data (default) or a
+**Authorized use only.** Targets are a model I trained myself on synthetic data (default) or a
 public ImageNet-pretrained ResNet-18 I run locally (optional). Never run this against a model or
 service you don't own. See [../../ETHICS.md](../../ETHICS.md).
 

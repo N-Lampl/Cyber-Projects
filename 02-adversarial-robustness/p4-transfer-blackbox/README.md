@@ -7,7 +7,7 @@ poke the target with a *capped query budget* and let random search do the rest.
 Two different small classifiers, all attacks hand-rolled in torch/numpy (no ART,
 foolbox or torchattacks).
 
-⚠️ **Authorized use only.** Both models are trained by me on synthetic / public
+**Authorized use only.** Both models are trained by me on synthetic / public
 data, attacked locally. See [../../ETHICS.md](../../ETHICS.md).
 
 ## The idea

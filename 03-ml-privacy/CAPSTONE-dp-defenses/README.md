@@ -8,7 +8,7 @@ thing that changes is the target's training procedure. The result is the textboo
 **privacy-utility tradeoff** — measured end-to-end, on a CPU, with no Opacus and no
 data download.
 
-⚠️ **Authorized use only.** Every model here (DP targets, shadow models, extraction
+**Authorized use only.** Every model here (DP targets, shadow models, extraction
 thieves) is trained by me on synthetic data I generated. The attacks are run only
 against my own models. See [../../ETHICS.md](../../ETHICS.md).
 

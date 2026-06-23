@@ -1,42 +1,42 @@
 {
   "project": "p1-fraud-detection",
-  "summary": "logreg on synthetic credit-card fraud (realized rate 0.99%): PR-AUC=0.440, ROC-AUC=0.965; at a 1% false-positive budget it catches 56% of fraud at 40% alert precision; p@100=0.45.",
-  "source": "synthetic",
-  "best_model": "logreg",
+  "summary": "xgboost on ULB creditcard.csv (real, 284,807 txns) (fraud rate 0.173%): PR-AUC=0.836, ROC-AUC=0.978; at a 1% false-positive budget it catches 88% of fraud at 15% alert precision; p@100=0.98.",
+  "source": "ULB creditcard.csv (real, 284,807 txns)",
+  "best_model": "xgboost",
   "seed": 42,
-  "n_transactions": 30000,
-  "n_features": 14,
-  "fraud_rate_realized": 0.009866666666666666,
+  "n_transactions": 284807,
+  "n_features": 30,
+  "fraud_rate_realized": 0.001727485630620034,
   "target_fpr": 0.01,
-  "operating_threshold": 0.9663268497869627,
-  "pr_auc": 0.44019612268620534,
-  "roc_auc": 0.9646516929587091,
-  "recall_at_fpr": 0.5617977528089888,
-  "recall_at_threshold": 0.5617977528089888,
-  "precision_at_threshold": 0.4032258064516129,
+  "operating_threshold": 0.00048149822396226227,
+  "pr_auc": 0.8364045155884776,
+  "roc_auc": 0.9779457780073291,
+  "recall_at_fpr": 0.8783783783783784,
+  "recall_at_threshold": 0.8783783783783784,
+  "precision_at_threshold": 0.14689265536723164,
   "confusion": {
-    "tp": 50,
-    "fp": 74,
-    "fn": 39,
-    "tn": 8837
+    "tp": 130,
+    "fp": 755,
+    "fn": 18,
+    "tn": 84540
   },
   "precision_at_k": {
-    "p@50": 0.58,
-    "p@100": 0.45,
-    "p@200": 0.295
+    "p@50": 1.0,
+    "p@100": 0.98,
+    "p@200": 0.615
   },
   "models": {
     "logreg": {
-      "pr_auc": 0.44019612268620534,
-      "roc_auc": 0.9646516929587091
+      "pr_auc": 0.7049958883506376,
+      "roc_auc": 0.9681345188320978
     },
     "rf": {
-      "pr_auc": 0.4278751803344671,
-      "roc_auc": 0.9565440517275076
+      "pr_auc": 0.8109752494330511,
+      "roc_auc": 0.9602332841663986
     },
     "xgboost": {
-      "pr_auc": 0.3935490023760377,
-      "roc_auc": 0.9503252513305736
+      "pr_auc": 0.8364045155884776,
+      "roc_auc": 0.9779457780073291
     }
   },
   "figures": [

@@ -11,7 +11,7 @@ needed. If the `cryptography` library happens to be installed, the lab
 *additionally* exercises the real authenticated/padded primitives (AES-GCM,
 RSA-OAEP, RSA-PSS).
 
-⚠️ **Authorized use only.** Every key, hash, and ciphertext here is generated
+**Authorized use only.** Every key, hash, and ciphertext here is generated
 locally over synthetic data; there are no real secrets, accounts, or networks.
 The toy AES/RSA are for *learning only* — never use them for anything real. See
 [../../ETHICS.md](../../ETHICS.md).

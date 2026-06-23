@@ -3,13 +3,13 @@
 Securing the model supply chain — disproportionately hireable for **MLSecOps / AI-security-engineer**
 titles, and a project almost no candidates have built.
 
-⚠️ Authorized use only — see [../ETHICS.md](../ETHICS.md).
+Authorized use only — see [../ETHICS.md](../ETHICS.md).
 
 ## Project
 
 | Project | Build | Status |
 |---|---|---|
-| ★ `secure-ml-pipeline/` | pickle-RCE PoC → safetensors → ModelScan → Sigstore signing → CI gate | ⬜ |
+| `secure-ml-pipeline/` | pickle-RCE PoC → safetensors → ModelScan → Sigstore signing → CI gate | |
 
 ## What it demonstrates
 

@@ -8,7 +8,7 @@ the same robustness curve. No attack/defense library — just torch.
 The default run is fully **offline**: it uses a deterministic synthetic 28x28 "digit-like" dataset
 (torch only, no download). Pass `ARGS=--real` to run the exact same code on real MNIST.
 
-⚠️ **Authorized use only.** Targets are models I trained myself on synthetic / public data. See
+**Authorized use only.** Targets are models I trained myself on synthetic / public data. See
 [../../ETHICS.md](../../ETHICS.md).
 
 ## The idea

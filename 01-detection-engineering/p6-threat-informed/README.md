@@ -5,7 +5,7 @@ measure what they actually cover. This project ships a handful of **Sigma** rule
 techniques, a dependency-free Python **loader/validator** that maps each rule to its ATT&CK ID, and
 a matplotlib **ATT&CK-coverage heatmap** that makes the gaps obvious.
 
-⚠️ **Authorized use only.** Rules here target detections of attacker behaviour on systems you own /
+**Authorized use only.** Rules here target detections of attacker behaviour on systems you own /
 are authorized to monitor; the catalog and rules are synthetic/illustrative. See
 [../../ETHICS.md](../../ETHICS.md).
 

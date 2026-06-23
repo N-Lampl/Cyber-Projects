@@ -1,5 +1,8 @@
 # CAPSTONE · Adversarial Fraud — attack AND defend a fraud model
 
+<!-- realdata-banner -->
+> **Why synthetic here (on purpose).** The feature-mutability attack needs interpretable features (a fraudster changing *amount/timing* but not account age). Real fraud data (ULB) is anonymized PCA components that can't express that, so this capstone uses a realistic synthetic generator. Real-data fraud results live in p1/p2.
+
 The finance mirror of the detection track's adversarial-IDS capstone. I train a
 fraud classifier, then **evade** it by crafting adversarial fraudulent
 transactions under a realistic threat model (a fraudster can change
@@ -7,7 +10,7 @@ amount/timing/merchant, but **not** account history), measure the
 attack-success-rate, then **harden** the model with adversarial training and
 re-measure. The deliverable is a one-page *Fraud Model Robustness Report Card*.
 
-⚠️ **Authorized use only.** Everything here is synthetic data and models I trained
+**Authorized use only.** Everything here is synthetic data and models I trained
 myself — no real cardholders, no production systems. See [../../ETHICS.md](../../ETHICS.md).
 
 ## The idea

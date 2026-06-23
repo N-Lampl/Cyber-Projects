@@ -6,7 +6,7 @@ arbitrary code, then build the pipeline that makes that impossible — serialize
 verify** the artifact, and gate it all in **GitHub Actions that fails closed** on
 an unsigned or tampered model.
 
-> ⚠️ **Authorized use only — dual-use.** The "attack" here is a *benign* PoC: the
+> **Authorized use only — dual-use.** The "attack" here is a *benign* PoC: the
 > payload only writes a marker file (`/tmp/PWNED_DEMO`), and it is only ever
 > executed inside a locked-down Docker container (`--network none --read-only`).
 > No weaponized pickle is ever committed. Targets are a model I trained myself on

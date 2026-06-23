@@ -1,8 +1,8 @@
 # LLM AppSec Threat Model & Remediation Report
 
-*Engagement date:* 2026-06-18  
-*Scope:* AcmeCloud support RAG assistant (self-trained lab target).  
-*Authorization:* Authorized-use-only. Target is a self-built, deliberately 
+*Engagement date:* 2026-06-18
+*Scope:* AcmeCloud support RAG assistant (self-trained lab target).
+*Authorization:* Authorized-use-only. Target is a self-built, deliberately
 vulnerable lab app over synthetic data. See [../../ETHICS.md](../../ETHICS.md).
 
 > Generated automatically by the CI red-team pipeline (`scripts/run_pipeline.py`). Numbers below are live results, not estimates.
@@ -10,8 +10,8 @@ vulnerable lab app over synthetic data. See [../../ETHICS.md](../../ETHICS.md).
 ## 1. Executive summary
 
 - **Gate threshold:** ASR ≤ 0% (any landed attack fails the build).
-- **Vulnerable target** (`p4-vulnerable-rag (VulnerableRAG, mock provider)`): overall ASR **100%** over 24 attack probes → gate **FAIL ❌ (build blocked)**.
-- **Remediated target** (`simulated DefendedRAG (p7 unavailable)`): overall ASR **0%** → gate **PASS ✅ (build allowed)**.
+- **Vulnerable target** (`p4-vulnerable-rag (VulnerableRAG, mock provider)`): overall ASR **100%** over 24 attack probes → gate **FAIL (build blocked)**.
+- **Remediated target** (`simulated DefendedRAG (p7 unavailable)`): overall ASR **0%** → gate **PASS (build allowed)**.
 - **Risk reduction:** ASR dropped by **100%** after the recommended fixes (see §4), with 0 benign-control false positives.
 
 ## 2. Findings (ranked by current severity)

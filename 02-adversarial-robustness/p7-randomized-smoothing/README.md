@@ -6,7 +6,7 @@ prediction. We implement **randomized smoothing** (Cohen, Rosenfeld, Kolter, 201
 sampling, a Clopper-Pearson lower bound, and the exact radius formula — then plot certified accuracy
 vs radius on a small subset.
 
-⚠️ **Authorized use only.** The target is a model I trained myself on synthetic data (or my own MNIST
+**Authorized use only.** The target is a model I trained myself on synthetic data (or my own MNIST
 download). See [../../ETHICS.md](../../ETHICS.md).
 
 ## The idea

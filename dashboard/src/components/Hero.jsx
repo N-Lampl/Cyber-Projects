@@ -49,7 +49,7 @@ export default function Hero({ data }) {
               <div className="out">training SmallCNN on MNIST (2 epochs, CPU)…</div>
               <div className="out">clean test accuracy: <span className="ok">98.7%</span></div>
               <div className="out">FGSM eps=0.30 → accuracy: <span className="warn">9.3%</span></div>
-              <div className="ok">✓ wrote results/metrics.json + figures</div>
+              <div className="ok">OK wrote results/metrics.json + figures</div>
             </div>
           </div>
         </div>

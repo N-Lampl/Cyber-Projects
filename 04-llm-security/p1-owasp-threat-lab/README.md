@@ -6,7 +6,7 @@ the track has a coherent threat model and honest coverage accounting, not a pile
 
 It also ships [`AUTHORIZATION.md`](AUTHORIZATION.md), the reusable scope template every attack project links.
 
-⚠️ **Authorized use only** — see [../../ETHICS.md](../../ETHICS.md) and [AUTHORIZATION.md](AUTHORIZATION.md).
+**Authorized use only** — see [../../ETHICS.md](../../ETHICS.md) and [AUTHORIZATION.md](AUTHORIZATION.md).
 
 ## Run it
 

@@ -6,7 +6,7 @@ This project does the opposite: a small **model-serving endpoint hardened with f
 security controls**, each tied to a row in an explicit threat model, and each proven by an
 **abuse test**.
 
-⚠️ **Authorized use only.** The "target" is a model and endpoint I run myself on synthetic
+**Authorized use only.** The "target" is a model and endpoint I run myself on synthetic
 data, exercised in-process. The abuse tests here are run against my own service, never a
 third party. See [../../ETHICS.md](../../ETHICS.md). Threat-modeling background lives in
 [../../00-foundations](../../00-foundations) (see `module-2-stride-ml`).

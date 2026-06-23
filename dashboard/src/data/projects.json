@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-06-23 01:36 UTC",
+  "generatedAt": "2026-06-23 12:59 UTC",
   "repoUrl": "https://github.com/N-Lampl/Cyber-Projects",
   "totals": {
     "projects": 44,
     "tracks": 7,
-    "figures": 91
+    "figures": 90
   },
   "tracks": [
     {
@@ -4037,24 +4037,24 @@
       "slug": "p1-fraud-detection",
       "name": "Credit-card fraud detection on a highly imbalanced table",
       "shortName": "p1-fraud-detection",
-      "summary": "logreg on synthetic credit-card fraud (realized rate 0.99%): PR-AUC=0.440, ROC-AUC=0.965; at a 1% false-positive budget it catches 56% of fraud at 40% alert precision; p@100=0.45.",
+      "summary": "xgboost on ULB creditcard.csv (real, 284,807 txns) (fraud rate 0.173%): PR-AUC=0.836, ROC-AUC=0.978; at a 1% false-positive budget it catches 88% of fraud at 15% alert precision; p@100=0.98.",
       "kind": "project",
       "metrics": [
         {
           "k": "best_model",
-          "v": "logreg"
+          "v": "xgboost"
         },
         {
           "k": "n_transactions",
-          "v": "30000"
+          "v": "284807"
         },
         {
           "k": "n_features",
-          "v": "14"
+          "v": "30"
         },
         {
           "k": "fraud_rate_realized",
-          "v": "1%"
+          "v": "0%"
         },
         {
           "k": "target_fpr",
@@ -4062,7 +4062,7 @@
         },
         {
           "k": "operating_threshold",
-          "v": "0.966327"
+          "v": "0.000481498"
         }
       ],
       "figures": [
@@ -4081,43 +4081,43 @@
       ],
       "raw": {
         "project": "p1-fraud-detection",
-        "summary": "logreg on synthetic credit-card fraud (realized rate 0.99%): PR-AUC=0.440, ROC-AUC=0.965; at a 1% false-positive budget it catches 56% of fraud at 40% alert precision; p@100=0.45.",
-        "source": "synthetic",
-        "best_model": "logreg",
+        "summary": "xgboost on ULB creditcard.csv (real, 284,807 txns) (fraud rate 0.173%): PR-AUC=0.836, ROC-AUC=0.978; at a 1% false-positive budget it catches 88% of fraud at 15% alert precision; p@100=0.98.",
+        "source": "ULB creditcard.csv (real, 284,807 txns)",
+        "best_model": "xgboost",
         "seed": 42,
-        "n_transactions": 30000,
-        "n_features": 14,
-        "fraud_rate_realized": 0.009866666666666666,
+        "n_transactions": 284807,
+        "n_features": 30,
+        "fraud_rate_realized": 0.001727485630620034,
         "target_fpr": 0.01,
-        "operating_threshold": 0.9663268497869627,
-        "pr_auc": 0.44019612268620534,
-        "roc_auc": 0.9646516929587091,
-        "recall_at_fpr": 0.5617977528089888,
-        "recall_at_threshold": 0.5617977528089888,
-        "precision_at_threshold": 0.4032258064516129,
+        "operating_threshold": 0.00048149822396226227,
+        "pr_auc": 0.8364045155884776,
+        "roc_auc": 0.9779457780073291,
+        "recall_at_fpr": 0.8783783783783784,
+        "recall_at_threshold": 0.8783783783783784,
+        "precision_at_threshold": 0.14689265536723164,
         "confusion": {
-          "tp": 50,
-          "fp": 74,
-          "fn": 39,
-          "tn": 8837
+          "tp": 130,
+          "fp": 755,
+          "fn": 18,
+          "tn": 84540
         },
         "precision_at_k": {
-          "p@50": 0.58,
-          "p@100": 0.45,
-          "p@200": 0.295
+          "p@50": 1.0,
+          "p@100": 0.98,
+          "p@200": 0.615
         },
         "models": {
           "logreg": {
-            "pr_auc": 0.44019612268620534,
-            "roc_auc": 0.9646516929587091
+            "pr_auc": 0.7049958883506376,
+            "roc_auc": 0.9681345188320978
           },
           "rf": {
-            "pr_auc": 0.4278751803344671,
-            "roc_auc": 0.9565440517275076
+            "pr_auc": 0.8109752494330511,
+            "roc_auc": 0.9602332841663986
           },
           "xgboost": {
-            "pr_auc": 0.3935490023760377,
-            "roc_auc": 0.9503252513305736
+            "pr_auc": 0.8364045155884776,
+            "roc_auc": 0.9779457780073291
           }
         },
         "figures": [
@@ -4135,32 +4135,32 @@
       "slug": "p2-transaction-anomaly",
       "name": "Unsupervised transaction anomaly detection",
       "shortName": "p2-transaction-anomaly",
-      "summary": "Label-free IsolationForest on a 12070-txn synthetic stream (179 injected anomalies, base rate 1.483%): PR-AUC=0.5888, ROC-AUC=0.9653; a top-179 analyst queue catches 63% of anomalies at a 1% FP budget.",
+      "summary": "Label-free IsolationForest on the REAL ULB creditcard stream (284,807 txns, 492 frauds, base rate 0.173%): PR-AUC=0.1287, ROC-AUC=0.9446 \u2014 no labels used to train; the labels only score it. Unsupervised detection is much harder than the supervised model in p1 (that gap is the whole point).",
       "kind": "project",
       "metrics": [
         {
           "k": "n_transactions",
-          "v": "12070"
+          "v": "284807"
         },
         {
           "k": "n_anomalies",
-          "v": "179"
+          "v": "492"
         },
         {
           "k": "base_rate",
-          "v": "1%"
+          "v": "0%"
         },
         {
           "k": "contamination",
-          "v": "0.012"
+          "v": "0.005"
         },
         {
           "k": "default_detector",
           "v": "iforest"
         },
         {
-          "k": "autoencoder_backend",
-          "v": "torch"
+          "k": "pr_auc",
+          "v": "13%"
         }
       ],
       "figures": [
@@ -4179,68 +4179,28 @@
       ],
       "raw": {
         "project": "p2-transaction-anomaly",
-        "summary": "Label-free IsolationForest on a 12070-txn synthetic stream (179 injected anomalies, base rate 1.483%): PR-AUC=0.5888, ROC-AUC=0.9653; a top-179 analyst queue catches 63% of anomalies at a 1% FP budget.",
-        "source": "synthetic",
+        "summary": "Label-free IsolationForest on the REAL ULB creditcard stream (284,807 txns, 492 frauds, base rate 0.173%): PR-AUC=0.1287, ROC-AUC=0.9446 \u2014 no labels used to train; the labels only score it. Unsupervised detection is much harder than the supervised model in p1 (that gap is the whole point).",
+        "source": "ULB creditcard.csv (real, 284,807 txns)",
         "seed": 42,
-        "n_transactions": 12070,
-        "n_anomalies": 179,
-        "base_rate": 0.01483,
-        "contamination": 0.012,
+        "n_transactions": 284807,
+        "n_anomalies": 492,
+        "base_rate": 0.00173,
+        "contamination": 0.005,
         "default_detector": "iforest",
-        "autoencoder_backend": "torch",
-        "pr_auc": 0.5888,
-        "roc_auc": 0.9653,
-        "recall_at_fpr_budget": 0.6369,
+        "pr_auc": 0.1287,
+        "roc_auc": 0.9446,
+        "recall_at_fpr_budget": 0.5854,
         "fpr_budget": 0.01,
-        "operating_threshold": 0.6370642068511766,
+        "operating_threshold": 0.5694037737119876,
         "precision_at_k": {
-          "p@50": 0.78,
-          "p@100": 0.7,
-          "p@200": 0.505
+          "p@50": 0.16,
+          "p@100": 0.17,
+          "p@200": 0.285
         },
         "recall_at_k": {
-          "r@50": 0.2179,
-          "r@100": 0.3911,
-          "r@200": 0.5642
-        },
-        "confusion_at_threshold": {
-          "tp": 114,
-          "fp": 119,
-          "fn": 65,
-          "tn": 11772
-        },
-        "recall_by_anomaly_type": {
-          "velocity": 0.1807,
-          "off_hours": 0.9583,
-          "amount_spike": 0.75
-        },
-        "detectors": {
-          "iforest": {
-            "pr_auc": 0.5888,
-            "roc_auc": 0.9653,
-            "n_anomalies": 179,
-            "base_rate": 0.01483,
-            "precision_at_k": {
-              "p@50": 0.78,
-              "p@100": 0.7,
-              "p@200": 0.505
-            },
-            "recall_at_k": {
-              "r@50": 0.2179,
-              "r@100": 0.3911,
-              "r@200": 0.5642
-            },
-            "fpr_budget": 0.01,
-            "operating_threshold": 0.6370642068511766,
-            "recall_at_fpr_budget": 0.6369,
-            "achieved_fpr": 0.01001,
-            "confusion": {
-              "tp": 114,
-              "fp": 119,
-              "fn": 65,
-              "tn": 11772
-            }
-          }
+          "r@50": 0.0163,
+          "r@100": 0.0346,
+          "r@200": 0.1159
         },
         "figures": [
           "results/figures/score_distribution.png",
@@ -4401,24 +4361,24 @@
       "slug": "p4-credit-risk-scoring",
       "name": "Credit default-risk scoring (calibration + fairness)",
       "shortName": "p4-credit-risk-scoring",
-      "summary": "Calibrated LogisticRegression scores synthetic credit default: ROC-AUC=0.884, KS=0.606, Gini=0.768, Brier=0.114; declining the riskiest 20% leaves an approval-rate gap of 0.012 between protected groups.",
+      "summary": "Calibrated GradientBoosting on REAL UCI German Credit: ROC-AUC=0.802, KS=0.462, Gini=0.604, Brier=0.162; declining the riskiest 20% leaves a 0.046 approval-rate gap between younger and older applicants.",
       "kind": "project",
       "metrics": [
         {
           "k": "n_total",
-          "v": "12000"
+          "v": "1000"
         },
         {
           "k": "n_train",
-          "v": "8400"
+          "v": "700"
         },
         {
           "k": "n_test",
-          "v": "3600"
+          "v": "300"
         },
         {
           "k": "base_default_rate",
-          "v": "26%"
+          "v": "30%"
         },
         {
           "k": "calibration_method",
@@ -4445,171 +4405,153 @@
       ],
       "raw": {
         "project": "p4-credit-risk-scoring",
-        "summary": "Calibrated LogisticRegression scores synthetic credit default: ROC-AUC=0.884, KS=0.606, Gini=0.768, Brier=0.114; declining the riskiest 20% leaves an approval-rate gap of 0.012 between protected groups.",
-        "source": "synthetic",
+        "summary": "Calibrated GradientBoosting on REAL UCI German Credit: ROC-AUC=0.802, KS=0.462, Gini=0.604, Brier=0.162; declining the riskiest 20% leaves a 0.046 approval-rate gap between younger and older applicants.",
+        "source": "real: UCI German Credit (n=1000, age<25 as protected group)",
         "seed": 42,
-        "n_total": 12000,
-        "n_train": 8400,
-        "n_test": 3600,
-        "base_default_rate": 0.25933333333333336,
+        "n_total": 1000,
+        "n_train": 700,
+        "n_test": 300,
+        "base_default_rate": 0.3,
         "calibration_method": "isotonic",
         "decline_rate": 0.2,
-        "best_model": "logreg",
+        "best_model": "gbm",
         "models": {
           "logreg": {
             "discrimination": {
-              "roc_auc": 0.8840406032985763,
-              "gini": 0.7680812065971525,
-              "ks_statistic": 0.6062447089288382
+              "roc_auc": 0.7932275132275133,
+              "gini": 0.5864550264550266,
+              "ks_statistic": 0.46666666666666673
             },
             "calibration": {
-              "brier_score": 0.11425864672074332,
-              "ece": 0.014886904788327066,
+              "brier_score": 0.1620850138223982,
+              "ece": 0.028063667938763956,
               "reliability_curve": {
                 "mean_predicted": [
-                  0.031070656259970603,
-                  0.14675384732650965,
-                  0.22420803666763062,
-                  0.3527046598041434,
-                  0.45769032532966736,
-                  0.5462444787913784,
-                  0.6405301021661379,
-                  0.7511811518711582,
-                  0.8453421448662378,
-                  0.945114175971906
+                  0.0791978218003391,
+                  0.18087694002670027,
+                  0.31794267759438366,
+                  0.44372442500103065,
+                  0.568735247706604,
+                  0.6637362611428753,
+                  0.7592283915686147
                 ],
                 "observed_rate": [
-                  0.039523212045169384,
-                  0.14823008849557523,
-                  0.20774647887323944,
-                  0.32710280373831774,
-                  0.4860335195530726,
-                  0.47619047619047616,
-                  0.6234309623430963,
-                  0.7588652482269503,
-                  0.8735632183908046,
-                  0.967948717948718
+                  0.07692307692307693,
+                  0.15873015873015872,
+                  0.3,
+                  0.48333333333333334,
+                  0.6538461538461539,
+                  0.7272727272727273,
+                  1.0
                 ],
                 "weight": [
-                  0.44277777777777777,
-                  0.12555555555555556,
-                  0.07888888888888888,
-                  0.08916666666666667,
-                  0.04972222222222222,
-                  0.04083333333333333,
-                  0.06638888888888889,
-                  0.03916666666666667,
-                  0.024166666666666666,
-                  0.043333333333333335
+                  0.26,
+                  0.21,
+                  0.2,
+                  0.2,
+                  0.08666666666666667,
+                  0.03666666666666667,
+                  0.006666666666666667
                 ]
               }
             },
-            "operating_threshold": 0.5319083005024873,
+            "operating_threshold": 0.48572487949573606,
             "confusion": {
-              "tp": 532,
-              "fp": 189,
-              "fn": 402,
-              "tn": 2477
+              "tp": 41,
+              "fp": 22,
+              "fn": 49,
+              "tn": 188
             },
             "fairness": {
               "groups": [
-                "A",
-                "B"
+                "older",
+                "young"
               ],
               "per_group": {
-                "A": {
-                  "n": 2104,
-                  "approval_rate": 0.8046577946768061,
-                  "tpr": 0.59,
-                  "default_rate": 0.2376425855513308
+                "older": {
+                  "n": 241,
+                  "approval_rate": 0.8091286307053942,
+                  "tpr": 0.4838709677419355,
+                  "default_rate": 0.2572614107883817
                 },
-                "B": {
-                  "n": 1496,
-                  "approval_rate": 0.7927807486631016,
-                  "tpr": 0.5460829493087558,
-                  "default_rate": 0.29010695187165775
+                "young": {
+                  "n": 59,
+                  "approval_rate": 0.711864406779661,
+                  "tpr": 0.39285714285714285,
+                  "default_rate": 0.4745762711864407
                 }
               },
-              "approval_rate_gap": 0.01187704601370454,
-              "tpr_gap": 0.043917050691244186
+              "approval_rate_gap": 0.0972642239257332,
+              "tpr_gap": 0.09101382488479265
             }
           },
           "gbm": {
             "discrimination": {
-              "roc_auc": 0.879417793420518,
-              "gini": 0.7588355868410359,
-              "ks_statistic": 0.6064487213880557
+              "roc_auc": 0.8018783068783069,
+              "gini": 0.6037566137566137,
+              "ks_statistic": 0.46190476190476193
             },
             "calibration": {
-              "brier_score": 0.11691713482330715,
-              "ece": 0.01856253832635515,
+              "brier_score": 0.161777513463789,
+              "ece": 0.032886038834707934,
               "reliability_curve": {
                 "mean_predicted": [
-                  0.033191868777937845,
-                  0.1453811568235444,
-                  0.24882271977372103,
-                  0.34498772450435256,
-                  0.44996648822148816,
-                  0.5461738658835793,
-                  0.6419866612770823,
-                  0.7465696321101712,
-                  0.8448355958003654,
-                  0.9423011181508294
+                  0.06789190069741817,
+                  0.1811167726844103,
+                  0.315274953630037,
+                  0.44597597860161425,
+                  0.562100135338747,
+                  0.655034120943509,
+                  0.8179012345679012
                 ],
                 "observed_rate": [
-                  0.04251269035532995,
-                  0.12903225806451613,
-                  0.2018348623853211,
-                  0.36283185840707965,
-                  0.42213114754098363,
-                  0.5327868852459017,
-                  0.6294416243654822,
-                  0.7867647058823529,
-                  0.888,
-                  0.967032967032967
+                  0.030303030303030304,
+                  0.16455696202531644,
+                  0.3508771929824561,
+                  0.4489795918367347,
+                  0.6176470588235294,
+                  0.7857142857142857,
+                  1.0
                 ],
                 "weight": [
-                  0.43777777777777777,
-                  0.12055555555555555,
-                  0.09083333333333334,
-                  0.06277777777777778,
-                  0.06777777777777778,
-                  0.06777777777777778,
-                  0.05472222222222222,
-                  0.03777777777777778,
-                  0.034722222222222224,
-                  0.025277777777777777
+                  0.22,
+                  0.2633333333333333,
+                  0.19,
+                  0.16333333333333333,
+                  0.11333333333333333,
+                  0.04666666666666667,
+                  0.0033333333333333335
                 ]
               }
             },
-            "operating_threshold": 0.5226747801893895,
+            "operating_threshold": 0.4843755383290268,
             "confusion": {
-              "tp": 528,
-              "fp": 193,
-              "fn": 406,
-              "tn": 2473
+              "tp": 40,
+              "fp": 20,
+              "fn": 50,
+              "tn": 190
             },
             "fairness": {
               "groups": [
-                "A",
-                "B"
+                "older",
+                "young"
               ],
               "per_group": {
-                "A": {
-                  "n": 2104,
-                  "approval_rate": 0.8013307984790875,
-                  "tpr": 0.59,
-                  "default_rate": 0.2376425855513308
+                "older": {
+                  "n": 241,
+                  "approval_rate": 0.8091286307053942,
+                  "tpr": 0.5,
+                  "default_rate": 0.2572614107883817
                 },
-                "B": {
-                  "n": 1496,
-                  "approval_rate": 0.7974598930481284,
-                  "tpr": 0.5368663594470046,
-                  "default_rate": 0.29010695187165775
+                "young": {
+                  "n": 59,
+                  "approval_rate": 0.7627118644067796,
+                  "tpr": 0.32142857142857145,
+                  "default_rate": 0.4745762711864407
                 }
               },
-              "approval_rate_gap": 0.0038709054309591373,
-              "tpr_gap": 0.05313364055299541
+              "approval_rate_gap": 0.046416766298614576,
+              "tpr_gap": 0.17857142857142855
             }
           }
         },
@@ -4628,7 +4570,7 @@
       "slug": "p5-market-manipulation",
       "name": "Market-manipulation detection on OHLCV time series",
       "shortName": "p5-market-manipulation",
-      "summary": "IsolationForest on 1500 synthetic OHLCV bars (60 manipulated, prevalence 4.0%): bar PR-AUC=0.862, ROC-AUC=0.993; at a 5% alert budget it catches 11/14 injected events (event recall 79%) with median lead-time +4 bars before the worst bar.",
+      "summary": "IsolationForest on REAL AAPL daily OHLCV (506 bars, 2015-02-17\u20132017-02-16): flags the 26 most anomalous bars at a 5% budget. Unlabeled \u2014 real markets have no manipulation ground truth \u2014 so detections are surfaced, not scored; top flags land on real turbulence (gaps / volume spikes).",
       "kind": "project",
       "metrics": [
         {
@@ -4636,12 +4578,12 @@
           "v": "isolation_forest"
         },
         {
-          "k": "baseline_detector",
-          "v": "rolling_zscore"
+          "k": "ticker",
+          "v": "AAPL"
         },
         {
           "k": "n_bars",
-          "v": "1500"
+          "v": "506"
         },
         {
           "k": "window",
@@ -4652,8 +4594,8 @@
           "v": "0.05"
         },
         {
-          "k": "n_manipulated_bars",
-          "v": "60"
+          "k": "n_flagged",
+          "v": "26"
         }
       ],
       "figures": [
@@ -4662,66 +4604,80 @@
           "url": "figures/06-financial-ml__p5-market-manipulation/anomaly_score_timeline.png"
         },
         {
-          "name": "pr curve",
-          "url": "figures/06-financial-ml__p5-market-manipulation/pr_curve.png"
-        },
-        {
           "name": "price volume flagged",
           "url": "figures/06-financial-ml__p5-market-manipulation/price_volume_flagged.png"
         }
       ],
       "raw": {
         "project": "p5-market-manipulation",
-        "summary": "IsolationForest on 1500 synthetic OHLCV bars (60 manipulated, prevalence 4.0%): bar PR-AUC=0.862, ROC-AUC=0.993; at a 5% alert budget it catches 11/14 injected events (event recall 79%) with median lead-time +4 bars before the worst bar.",
-        "source": "synthetic",
+        "summary": "IsolationForest on REAL AAPL daily OHLCV (506 bars, 2015-02-17\u20132017-02-16): flags the 26 most anomalous bars at a 5% budget. Unlabeled \u2014 real markets have no manipulation ground truth \u2014 so detections are surfaced, not scored; top flags land on real turbulence (gaps / volume spikes).",
+        "source": "real: AAPL daily OHLCV (GitHub-raw mirror)",
+        "source_url": "https://raw.githubusercontent.com/plotly/datasets/master/finance-charts-apple.csv",
         "detector": "isolation_forest",
-        "baseline_detector": "rolling_zscore",
         "seed": 42,
-        "n_bars": 1500,
+        "ticker": "AAPL",
+        "n_bars": 506,
         "window": 20,
         "alert_budget": 0.05,
-        "n_manipulated_bars": 60,
-        "prevalence": 0.04,
-        "pr_auc": 0.8618166106410718,
-        "roc_auc": 0.9929050925925926,
-        "precision_at_k": {
-          "p@25": 0.88,
-          "p@50": 0.86,
-          "p@100": 0.56
-        },
-        "baseline_pr_auc": 0.8870692999648302,
-        "baseline_roc_auc": 0.9903125,
-        "operating_threshold": 0.5418708417070298,
-        "bar_recall": 0.8666666666666667,
-        "bar_precision": 0.6933333333333334,
-        "false_positive_rate": 0.01597222222222222,
-        "confusion": {
-          "tp": 52,
-          "fp": 23,
-          "fn": 8,
-          "tn": 1417
-        },
-        "event_recall": 0.7857142857142857,
-        "n_events": 14,
-        "n_detected": 11,
-        "median_lead_time_bars": 4.0,
-        "mean_lead_time_bars": 2.6363636363636362,
-        "event_recall_by_kind": {
-          "pump_dump": {
-            "detected": 6,
-            "total": 6,
-            "recall": 1.0
+        "n_flagged": 26,
+        "operating_threshold": 0.5556183909763225,
+        "top_flagged_bars": [
+          {
+            "date": "2017-02-01",
+            "close": 128.75,
+            "score": 0.7306
           },
-          "spoof": {
-            "detected": 5,
-            "total": 8,
-            "recall": 0.625
+          {
+            "date": "2016-04-27",
+            "close": 97.82,
+            "score": 0.7279
+          },
+          {
+            "date": "2016-07-27",
+            "close": 102.95,
+            "score": 0.7157
+          },
+          {
+            "date": "2015-08-21",
+            "close": 105.76,
+            "score": 0.7069
+          },
+          {
+            "date": "2015-08-24",
+            "close": 103.12,
+            "score": 0.691
+          },
+          {
+            "date": "2016-01-27",
+            "close": 93.42,
+            "score": 0.685
+          },
+          {
+            "date": "2015-08-26",
+            "close": 109.69,
+            "score": 0.6568
+          },
+          {
+            "date": "2016-09-14",
+            "close": 111.77,
+            "score": 0.6523
+          },
+          {
+            "date": "2015-08-11",
+            "close": 113.49,
+            "score": 0.635
+          },
+          {
+            "date": "2015-09-01",
+            "close": 107.72,
+            "score": 0.6305
           }
-        },
+        ],
+        "labeled": false,
+        "note": "Unsupervised on real data; no ground-truth manipulation labels. See the synthetic path (make run) for labeled PR/recall metrics.",
         "figures": [
           "results/figures/price_volume_flagged.png",
-          "results/figures/anomaly_score_timeline.png",
-          "results/figures/pr_curve.png"
+          "results/figures/anomaly_score_timeline.png"
         ]
       },
       "repoPath": "06-financial-ml/p5-market-manipulation"

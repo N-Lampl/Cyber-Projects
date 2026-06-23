@@ -1,5 +1,8 @@
 # p1 · Credit-card fraud detection on a highly imbalanced table
 
+<!-- realdata-banner -->
+> **Real data.** Committed results are from the **real ULB credit-card fraud** dataset (284,807 transactions): `scripts/run_detection.py --real data/creditcard.csv`. The offline synthetic generator (`make detect`) is the no-network fallback for tests/CI.
+
 Supervised fraud detection where fraud is **~1% of transactions**. The point of
 this project is *how you measure*: on a 1% base rate, "99% accuracy" is what you
 get by predicting **never fraud**, so accuracy is banned here. We report
@@ -7,7 +10,7 @@ get by predicting **never fraud**, so accuracy is banned here. We report
 budget, and we tune the decision threshold to an operating point a fraud team
 would actually run.
 
-⚠️ **Authorized use only.** Synthetic data and models I trained myself; the
+**Authorized use only.** Synthetic data and models I trained myself; the
 optional real path is a public dataset used under its stated license. See
 [../../ETHICS.md](../../ETHICS.md).
 

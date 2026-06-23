@@ -7,7 +7,7 @@ shift partway through (the kind an attacker causes while probing/evading, or tha
 a silently-broken pipeline causes), and raises **thresholded alerts** using two
 classic drift statistics — **PSI** and **KS**.
 
-⚠️ **Authorized use only.** Targets are synthetic data and self-trained models;
+**Authorized use only.** Targets are synthetic data and self-trained models;
 no real systems or third-party data are touched. See [../../ETHICS.md](../../ETHICS.md).
 
 ## The idea

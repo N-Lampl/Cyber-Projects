@@ -5,7 +5,7 @@ dissect them back** — all offline. I hand-roll Ethernet/IPv4/TCP/UDP/DNS/HTTP/
 (pure stdlib `struct`/`socket`), generate a synthetic capture of one realistic web fetch, and
 parse it into per-protocol counts and writeups. No live sniffing, no network.
 
-⚠️ **Authorized use only.** Everything here is synthetic traffic between
+**Authorized use only.** Everything here is synthetic traffic between
 documentation/RFC-1918 addresses that *my own code* generates. No real hosts are contacted.
 See [../../ETHICS.md](../../ETHICS.md).
 

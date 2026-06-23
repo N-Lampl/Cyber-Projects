@@ -98,13 +98,94 @@ def plot_timeline(df, scores, thr, path):
     plt.close(fig)
 
 
+def _plot_real_timeline(time, scores, y, thr, path):
+    fig, ax = plt.subplots(figsize=(9, 4))
+    ax.scatter(time[y == 0], scores[y == 0], s=5, alpha=0.2, color="#4C72B0", label="legit")
+    ax.scatter(time[y == 1], scores[y == 1], s=26, color="#C44E52", edgecolor="k", lw=0.3, label="fraud")
+    ax.axhline(thr, ls="--", color="black", lw=1, label="operating threshold")
+    ax.set_xlabel("transaction time (s)")
+    ax.set_ylabel("anomaly score")
+    ax.set_title("Anomaly score over time (real ULB; red = true fraud)")
+    ax.legend(loc="upper left", fontsize=8)
+    fig.tight_layout()
+    fig.savefig(path, dpi=120)
+    plt.close(fig)
+
+
+def run_real(args) -> None:
+    """Unsupervised anomaly detection on the REAL ULB creditcard.csv, scored
+    against the real fraud labels (labels are used ONLY for evaluation)."""
+    import pandas as pd
+    from sklearn.preprocessing import StandardScaler
+
+    set_seed(args.seed)
+    FIGURES.mkdir(parents=True, exist_ok=True)
+    df = pd.read_csv(args.real)
+    y = df["Class"].to_numpy().astype(int)
+    feat = [c for c in df.columns if c != "Class"]
+    X = StandardScaler().fit_transform(df[feat].astype(float).to_numpy())
+    base = float(y.mean())
+    cont = max(base, 0.005)
+    print(f"real ULB: {len(df):,} txns, {int(y.sum())} frauds (base rate {base:.4%})")
+
+    det = IForestDetector(contamination=cont, seed=args.seed).fit(X)
+    scores = det.score(X)
+    m = evaluate_scores(y, scores, cont)
+    print(f"IsolationForest  PR-AUC={m['pr_auc']}  ROC-AUC={m['roc_auc']}  "
+          f"recall@{int(m['fpr_budget'] * 100)}%FPR={m['recall_at_fpr_budget']}")
+
+    plot_score_distribution(scores, y, FIGURES / "score_distribution.png")
+    plot_precision_at_k(scores, y, FIGURES / "precision_at_k.png")
+    _plot_real_timeline(df["Time"].to_numpy(), scores, y, m["operating_threshold"],
+                        FIGURES / "anomaly_timeline.png")
+
+    summary = (
+        f"Label-free IsolationForest on the REAL ULB creditcard stream "
+        f"({len(df):,} txns, {int(y.sum())} frauds, base rate {base:.3%}): "
+        f"PR-AUC={m['pr_auc']}, ROC-AUC={m['roc_auc']} — no labels used to train; "
+        f"the labels only score it. Unsupervised detection is much harder than the "
+        f"supervised model in p1 (that gap is the whole point)."
+    )
+    out = {
+        "project": "p2-transaction-anomaly",
+        "summary": summary,
+        "source": f"ULB creditcard.csv (real, {len(df):,} txns)",
+        "seed": args.seed,
+        "n_transactions": int(len(df)),
+        "n_anomalies": int(y.sum()),
+        "base_rate": round(base, 5),
+        "contamination": cont,
+        "default_detector": "iforest",
+        "pr_auc": m["pr_auc"],
+        "roc_auc": m["roc_auc"],
+        "recall_at_fpr_budget": m["recall_at_fpr_budget"],
+        "fpr_budget": m["fpr_budget"],
+        "operating_threshold": m["operating_threshold"],
+        "precision_at_k": m["precision_at_k"],
+        "recall_at_k": m["recall_at_k"],
+        "figures": [
+            "results/figures/score_distribution.png",
+            "results/figures/precision_at_k.png",
+            "results/figures/anomaly_timeline.png",
+        ],
+    }
+    (RESULTS / "metrics.json").write_text(json.dumps(out, indent=2))
+    print("\n" + summary)
+    print(f"wrote {RESULTS / 'metrics.json'} and 3 figures")
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__)
+    ap.add_argument("--real", type=str, default=None, help="path to real ULB creditcard.csv")
     ap.add_argument("--n", type=int, default=12000, help="number of transactions")
     ap.add_argument("--contamination", type=float, default=0.012)
     ap.add_argument("--ae", action="store_true", help="also run the optional autoencoder")
     ap.add_argument("--seed", type=int, default=42)
     args = ap.parse_args()
+
+    if args.real:
+        run_real(args)
+        return
 
     set_seed(args.seed)
     FIGURES.mkdir(parents=True, exist_ok=True)

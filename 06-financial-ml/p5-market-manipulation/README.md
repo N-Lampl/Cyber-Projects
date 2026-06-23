@@ -1,10 +1,13 @@
 # p5 · Market-manipulation detection on OHLCV time series
 
+<!-- realdata-banner -->
+> **Real data.** Committed results run on **real AAPL daily OHLCV (2015–2017)**: `scripts/run_detect.py --ticker AAPL`. Real markets have no manipulation labels, so flags are surfaced, not scored — the labeled synthetic path (`make run`) keeps the PR/recall metrics.
+
 Inject **known** manipulations into a seeded synthetic price/volume series, then catch them with
 unsupervised anomaly detection — and score it the way a surveillance desk would: PR-AUC,
 event-level recall at a fixed alert budget, and **median lead-time-to-flag**.
 
-⚠️ **Authorized use only.** Everything here is synthetic data I generated and models I fit myself —
+**Authorized use only.** Everything here is synthetic data I generated and models I fit myself —
 no real venue, broker or account is touched. See [../../ETHICS.md](../../ETHICS.md).
 
 ## The idea

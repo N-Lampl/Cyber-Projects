@@ -4,7 +4,7 @@ Red-team the deliberately-vulnerable RAG lab from [`../p4-vulnerable-rag`](../p4
 craft prompt-injection and data-exfiltration attacks, and **measure attack-success-rate (ASR) per
 technique** so [`../p7-defend-rag`](../p7-defend-rag) can show a quantified before/after reduction.
 
-⚠️ **Authorized use only.** Every attack targets a self-built lab app on **synthetic** data with an
+**Authorized use only.** Every attack targets a self-built lab app on **synthetic** data with an
 offline **mock** model. No third-party or production system, no real network calls. See
 [../../ETHICS.md](../../ETHICS.md).
 

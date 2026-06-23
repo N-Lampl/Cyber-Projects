@@ -6,7 +6,7 @@ project builds a lightweight detector that separates such domains from benign,
 human-readable ones using **character-level features** — and shows why the obvious
 "high entropy = bad" heuristic is not enough.
 
-⚠️ **Authorized use only.** Everything here is synthetic data generated in-process
+**Authorized use only.** Everything here is synthetic data generated in-process
 and a model I trained myself. No real domains, feeds, or DNS traffic are touched.
 See [../../ETHICS.md](../../ETHICS.md).
 

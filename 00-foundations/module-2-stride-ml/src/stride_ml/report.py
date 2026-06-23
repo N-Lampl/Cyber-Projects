@@ -35,7 +35,7 @@ def mermaid_dfd(system: System) -> str:
                 lines.append(f"    {nid[e.name]}{lo}\"{e.name}\"{hi}")
         lines.append("  end")
     for f in system.flows:
-        label = f.data + (" 🔒" if f.encrypted else "")
+        label = f.data + (" " if f.encrypted else "")
         lines.append(f"  {nid[f.source]} -->|{label}| {nid[f.sink]}")
     return "\n".join(lines)
 

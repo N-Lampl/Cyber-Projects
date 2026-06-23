@@ -4,7 +4,7 @@ Two classic ML-privacy attacks implemented from scratch, both showing the same
 uncomfortable fact: **a trained model leaks information about the data it was
 trained on.** No attack library — just gradients and probabilities.
 
-⚠️ **Authorized use only.** Every target here is a model **I trained myself** on
+**Authorized use only.** Every target here is a model **I trained myself** on
 **synthetic data**. No real people, no third-party models, no downloads on the
 default path. See [../../ETHICS.md](../../ETHICS.md).
 

@@ -5,7 +5,7 @@ Train a victim classifier, expose it as a **black-box, label-only API**, then tr
 the **fidelity-vs-query-budget** curve, then turn on a **rate-limit / query-budget defense** and watch
 it cap the thief. No ART, no foolbox — the attack is ~30 lines.
 
-⚠️ **Authorized use only.** The victim is a model I trained myself on synthetic (or public MNIST) data,
+**Authorized use only.** The victim is a model I trained myself on synthetic (or public MNIST) data,
 queried through my own in-process API. No third-party model or service is touched. See
 [../../ETHICS.md](../../ETHICS.md).
 

@@ -5,7 +5,7 @@ project in this repo to the adversarial-ML techniques it demonstrates. It answer
 hiring manager (or a threat-modeling review) will actually ask: *"which real attacks does this
 work cover, and how do they relate to the classic kill chain?"*
 
-⚠️ **Authorized use only.** This module is documentation/threat-modeling over **self-trained models
+**Authorized use only.** This module is documentation/threat-modeling over **self-trained models
 and synthetic data only** — no live targets. See [../../ETHICS.md](../../ETHICS.md).
 
 ## The two frameworks

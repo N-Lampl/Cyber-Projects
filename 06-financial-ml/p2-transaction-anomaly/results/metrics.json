@@ -1,67 +1,27 @@
 {
   "project": "p2-transaction-anomaly",
-  "summary": "Label-free IsolationForest on a 12070-txn synthetic stream (179 injected anomalies, base rate 1.483%): PR-AUC=0.5888, ROC-AUC=0.9653; a top-179 analyst queue catches 63% of anomalies at a 1% FP budget.",
-  "source": "synthetic",
+  "summary": "Label-free IsolationForest on the REAL ULB creditcard stream (284,807 txns, 492 frauds, base rate 0.173%): PR-AUC=0.1287, ROC-AUC=0.9446 \u2014 no labels used to train; the labels only score it. Unsupervised detection is much harder than the supervised model in p1 (that gap is the whole point).",
+  "source": "ULB creditcard.csv (real, 284,807 txns)",
   "seed": 42,
-  "n_transactions": 12070,
-  "n_anomalies": 179,
-  "base_rate": 0.01483,
-  "contamination": 0.012,
+  "n_transactions": 284807,
+  "n_anomalies": 492,
+  "base_rate": 0.00173,
+  "contamination": 0.005,
   "default_detector": "iforest",
-  "autoencoder_backend": "torch",
-  "pr_auc": 0.5888,
-  "roc_auc": 0.9653,
-  "recall_at_fpr_budget": 0.6369,
+  "pr_auc": 0.1287,
+  "roc_auc": 0.9446,
+  "recall_at_fpr_budget": 0.5854,
   "fpr_budget": 0.01,
-  "operating_threshold": 0.6370642068511766,
+  "operating_threshold": 0.5694037737119876,
   "precision_at_k": {
-    "p@50": 0.78,
-    "p@100": 0.7,
-    "p@200": 0.505
+    "p@50": 0.16,
+    "p@100": 0.17,
+    "p@200": 0.285
   },
   "recall_at_k": {
-    "r@50": 0.2179,
-    "r@100": 0.3911,
-    "r@200": 0.5642
-  },
-  "confusion_at_threshold": {
-    "tp": 114,
-    "fp": 119,
-    "fn": 65,
-    "tn": 11772
-  },
-  "recall_by_anomaly_type": {
-    "velocity": 0.1807,
-    "off_hours": 0.9583,
-    "amount_spike": 0.75
-  },
-  "detectors": {
-    "iforest": {
-      "pr_auc": 0.5888,
-      "roc_auc": 0.9653,
-      "n_anomalies": 179,
-      "base_rate": 0.01483,
-      "precision_at_k": {
-        "p@50": 0.78,
-        "p@100": 0.7,
-        "p@200": 0.505
-      },
-      "recall_at_k": {
-        "r@50": 0.2179,
-        "r@100": 0.3911,
-        "r@200": 0.5642
-      },
-      "fpr_budget": 0.01,
-      "operating_threshold": 0.6370642068511766,
-      "recall_at_fpr_budget": 0.6369,
-      "achieved_fpr": 0.01001,
-      "confusion": {
-        "tp": 114,
-        "fp": 119,
-        "fn": 65,
-        "tn": 11772
-      }
-    }
+    "r@50": 0.0163,
+    "r@100": 0.0346,
+    "r@200": 0.1159
   },
   "figures": [
     "results/figures/score_distribution.png",

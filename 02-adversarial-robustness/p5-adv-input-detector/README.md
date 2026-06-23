@@ -4,7 +4,7 @@ The defense side of the FGSM story (p1): instead of making the model robust, put
 guard in front of it** that flags inputs that look adversarial *before* they're trusted. Built with
 torch + scikit-learn only — no attack/defense libraries.
 
-⚠️ **Authorized use only.** The target is a model I trained myself on synthetic / public data, and the
+**Authorized use only.** The target is a model I trained myself on synthetic / public data, and the
 FGSM examples are generated against my own model. See [../../ETHICS.md](../../ETHICS.md).
 
 ## The idea

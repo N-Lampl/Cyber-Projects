@@ -1,11 +1,14 @@
 # p4 · Credit default-risk scoring (calibration + fairness)
 
+<!-- realdata-banner -->
+> **Real data.** Committed results are from **real UCI German Credit** (1,000 borrowers), with applicant age<25 as a genuine protected attribute: `scripts/run_scoring.py --real-csv data/german.data`. Synthetic borrowers remain the offline fallback.
+
 A small, honest credit scorecard: train and **calibrate** two probability-of-default
 (PD) models on a seeded synthetic borrower table, then judge them the way a lender
 actually would — by **discrimination** (ROC-AUC, KS, Gini) *and* **calibration**
 (Brier score, reliability curve), with a **fairness check** across a protected group.
 
-⚠️ **Authorized use only.** Synthetic data and my own models — no real applicants,
+**Authorized use only.** Synthetic data and my own models — no real applicants,
 no scraped PII. See [../../ETHICS.md](../../ETHICS.md).
 
 ## The idea

@@ -6,7 +6,7 @@ every PR and **blocks the merge if attack-success rate (ASR) exceeds a
 threshold** — then trends ASR per OWASP category and ships a consulting-style
 threat-model + remediation report.
 
-⚠️ **Authorized use only.** Every probe targets a self-built, deliberately
+**Authorized use only.** Every probe targets a self-built, deliberately
 vulnerable lab app over synthetic data (fake PII, fake `sk-...` keys). See
 [../../ETHICS.md](../../ETHICS.md).
 
@@ -34,10 +34,10 @@ for an LLM RAG app, mapped to the **OWASP LLM Top-10 (2025)**.
   │                       normalise → ASR per OWASP category      │
   │                              │                               │
   │                              ▼                               │
-  │            gate: overall ASR > threshold ?  ── yes ─▶ exit 1 │ ❌ block merge
+  │            gate: overall ASR > threshold ?  ── yes ─▶ exit 1 │ block merge
   │                              │  no                            │
   │                              ▼                               │
-  │                           exit 0                              │ ✅ allow merge
+  │                           exit 0                              │ allow merge
   └──────────────────────────────────────────────────────────────┘
 ```
 

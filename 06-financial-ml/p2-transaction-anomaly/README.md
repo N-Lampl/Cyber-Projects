@@ -1,11 +1,14 @@
 # p2 · Unsupervised transaction anomaly detection
 
+<!-- realdata-banner -->
+> **Real data.** Committed results run IsolationForest on the **real ULB credit-card** data, scored against the real fraud labels (used for evaluation only): `scripts/run_detect.py --real <creditcard.csv>`. Synthetic stream remains the offline fallback.
+
 Label-free anomaly detection over a transaction stream. An **IsolationForest** (and an
 optional small **autoencoder**) scores every transaction by how unusual it is — no fraud
 labels at fit time. We inject three realistic anomaly patterns into a seeded synthetic
 stream and grade the detectors against those injected labels (used **only** for evaluation).
 
-⚠️ **Authorized use only.** Everything here is synthetic data and my own models — no real
+**Authorized use only.** Everything here is synthetic data and my own models — no real
 accounts, no scraping, no third-party systems. See [../../ETHICS.md](../../ETHICS.md).
 
 ## The idea

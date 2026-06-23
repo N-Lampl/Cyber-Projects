@@ -9,7 +9,7 @@ proves coverage.
 > and emits [`results/metrics.json`](results/metrics.json) + a coverage figure, so this page and the
 > metrics never drift.
 
-⚠️ **Authorized use only.** Every lab here runs against models, data, and apps I own or am licensed
+**Authorized use only.** Every lab here runs against models, data, and apps I own or am licensed
 to test. See [../../ETHICS.md](../../ETHICS.md).
 
 ---
